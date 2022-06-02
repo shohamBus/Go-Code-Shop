@@ -277,10 +277,10 @@ const App = () => {
     },
   ];
   return (
-    <div>
+    <>
       <Header />
       <Products data={ProductArray} />
-    </div>
+    </>
   );
 };
 
