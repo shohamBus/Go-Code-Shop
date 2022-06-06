@@ -279,7 +279,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <Products data={ProductArray} />
+      <Products ProductList={ProductArray} />
     </>
   );
 };

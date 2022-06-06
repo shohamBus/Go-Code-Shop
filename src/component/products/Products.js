@@ -1,15 +1,15 @@
 import "./Products.css";
 import Product from "../product/Product";
 
-const Products = ({ data }) => {
+const Products = ({ ProductList }) => {
   return (
     <section className="products">
-      {data.map((item) => (
+      {ProductList.map(({ id, image, title, price }) => (
         <Product
-          imageProductPath={item.image}
-          titleProduct={item.title}
-          priceProduct={item.price}
-          key={item.id}
+          imageProductPath={image}
+          titleProduct={title}
+          priceProduct={price}
+          key={id}
         />
       ))}
     </section>
