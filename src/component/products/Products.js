@@ -1,10 +1,10 @@
 import "./Products.css";
 import Product from "../product/Product";
 
-const Products = ({ ProductList }) => {
+const Products = ({ productList }) => {
   return (
     <section className="products">
-      {ProductList.map(({ id, image, title, price }) => (
+      {productList.map(({ id, image, title, price }) => (
         <Product
           imageProductPath={image}
           titleProduct={title}

@@ -1,9 +1,10 @@
 import Header from "./component/header/Header";
 import Products from "./component/products/Products";
 import "./App.css";
+import { useState } from "react";
 
 const App = () => {
-  const ProductArray = [
+  const productsArr = [
     {
       "id": 1,
       "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
@@ -276,10 +277,31 @@ const App = () => {
       },
     },
   ];
+  const [productArray, setProductArray] = useState(productsArr);
+  const s = [...productsArr];
+
+  let optionCategory = " ";
+  //filter the products
+
+  function selectedCategory(optionCategory) {
+    setProductArray(s.filter((e) => e.category === optionCategory));
+  }
+
+  //display each category just once
+
+  const categories = s
+    .map((p) => p.category)
+    .filter((value, index, array) => array.indexOf(value) === index);
+
   return (
     <>
-      <Header />
-      <Products ProductList={ProductArray} />
+      <Header
+        productList={productArray}
+        filterCategory={categories}
+        optionCategory={optionCategory}
+        selectedCategory={selectedCategory}
+      />
+      <Products productList={productArray} />
     </>
   );
 };
