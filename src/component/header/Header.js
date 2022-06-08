@@ -1,5 +1,5 @@
 import "./Header.css";
-const Header = ({ id, filterCategory, optionCategory, selectedCategory }) => (
+const Header = ({ filterCategory, optionCategory, selectedCategory }) => (
   <nav className="product-filter">
     <h1>Jackets</h1>
     <div className="sort">
@@ -12,7 +12,7 @@ const Header = ({ id, filterCategory, optionCategory, selectedCategory }) => (
           }}
         >
           {filterCategory.map((i) => (
-            <option key={id}>{i}</option>
+            <option key={i}>{i}</option>
           ))}
           ;
         </select>

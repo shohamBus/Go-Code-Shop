@@ -281,10 +281,15 @@ const App = () => {
   const s = [...productsArr];
 
   let optionCategory = " ";
+
   //filter the products
 
   function selectedCategory(optionCategory) {
-    setProductArray(s.filter((e) => e.category === optionCategory));
+    if (optionCategory === "show all") {
+      setProductArray(s.map((e) => e));
+    } else {
+      setProductArray(s.filter((e) => e.category === optionCategory));
+    }
   }
 
   //display each category just once
@@ -292,11 +297,11 @@ const App = () => {
   const categories = s
     .map((p) => p.category)
     .filter((value, index, array) => array.indexOf(value) === index);
+  categories.unshift("show all");
 
   return (
     <>
       <Header
-        productList={productArray}
         filterCategory={categories}
         optionCategory={optionCategory}
         selectedCategory={selectedCategory}
