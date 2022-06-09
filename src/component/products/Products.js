@@ -3,19 +3,11 @@ import Product from "../product/Product";
 import { useState } from "react";
 
 const Products = ({ productList }) => {
-  let [isApear, setIsApear] = useState(true);
+  console.log(productList);
 
   return (
     <div>
-      <button
-        onClick={() => {
-          setIsApear(!isApear);
-        }}
-      >
-        {isApear ? "HIDE" : "SHOW"}
-      </button>
-
-      {isApear && (
+      {productList.length > 0 ? (
         <section className="products">
           {productList.map(({ id, image, title, price }) => (
             <Product
@@ -26,6 +18,8 @@ const Products = ({ productList }) => {
             />
           ))}
         </section>
+      ) : (
+        <div class="divLoad loader">Load&nbsp;ng</div>
       )}
     </div>
   );
