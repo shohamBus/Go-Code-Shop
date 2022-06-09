@@ -277,8 +277,8 @@ const App = () => {
       },
     },
   ];
+  const originalArray = [...productsArr];
   const [productArray, setProductArray] = useState(productsArr);
-  const s = [...productsArr];
 
   let optionCategory = " ";
 
@@ -286,15 +286,17 @@ const App = () => {
 
   function selectedCategory(optionCategory) {
     if (optionCategory === "show all") {
-      setProductArray(s.map((e) => e));
+      setProductArray(originalArray.map((e) => e));
     } else {
-      setProductArray(s.filter((e) => e.category === optionCategory));
+      setProductArray(
+        originalArray.filter((e) => e.category === optionCategory)
+      );
     }
   }
 
   //display each category just once
 
-  const categories = s
+  const categories = originalArray
     .map((p) => p.category)
     .filter((value, index, array) => array.indexOf(value) === index);
   categories.unshift("show all");
