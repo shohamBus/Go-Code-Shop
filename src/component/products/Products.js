@@ -1,10 +1,8 @@
 import "./Products.css";
 import Product from "../product/Product";
-import { useState } from "react";
+import Utils from "../utils/Utils";
 
 const Products = ({ productList }) => {
-  console.log(productList);
-
   return (
     <div>
       {productList.length > 0 ? (
@@ -19,7 +17,7 @@ const Products = ({ productList }) => {
           ))}
         </section>
       ) : (
-        <div class="divLoad loader">Load&nbsp;ng</div>
+        <Utils />
       )}
     </div>
   );
