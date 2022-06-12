@@ -2,19 +2,25 @@ import Header from "./component/header/Header";
 import Products from "./component/products/Products";
 import "./App.css";
 import { useState, useEffect } from "react";
+import Utils from "./component/utils/Utils";
+import ProductToCart from "../src/component/context/ProductToCart";
+import Cart from "./component/Cart";
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [productArray, setProductArray] = useState([]);
+  const [originalArray, setOriginalArray] = useState([]);
+  const [productCart, setProductCart] = useState([]);
+
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
+      .then((productArray) => productArray.json())
       .then((productArray) => {
         setProductArray(productArray);
         setOriginalArray(productArray);
+        setIsLoading(false);
       });
   }, []);
-
-  const [productArray, setProductArray] = useState([]);
-  const [originalArray, setOriginalArray] = useState([]);
 
   let optionCategory = " ";
 
@@ -39,12 +45,22 @@ const App = () => {
 
   return (
     <>
-      <Header
-        filterCategory={categories}
-        optionCategory={optionCategory}
-        selectedCategory={selectedCategory}
-      />
-      <Products productList={productArray} />
+      {isLoading ? (
+        <Utils />
+      ) : (
+        <>
+          <Header
+            filterCategory={categories}
+            optionCategory={optionCategory}
+            selectedCategory={selectedCategory}
+            fetchAgain={fetch}
+          />
+          <ProductToCart.Provider value={{ productCart, setProductCart }}>
+            <Products productList={productArray} />
+            <Cart />
+          </ProductToCart.Provider>
+        </>
+      )}
     </>
   );
 };
