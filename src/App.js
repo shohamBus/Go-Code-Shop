@@ -4,7 +4,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import Utils from "./component/utils/Utils";
 import ProductToCart from "../src/component/context/ProductToCart";
-import Cart from "./component/Cart";
+import Cart from "./component/carts/Cart";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
