@@ -1,0 +1,30 @@
+.container {
+    margin-top: 25px;
+    margin:auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    align-items: center;
+    text-align: center;
+justify-content: center;
+}
+img{
+    width: 100%;
+    height: 350px;
+    display: block;
+    text-align: inherit;
+}
+.text{
+    padding:0 50px;
+}
+
+.buttom-line{
+    display: flex;
+    flex-direction: row;
+    padding: 25px;
+}
+

@@ -6,7 +6,7 @@ const Products = ({ productList }) => {
     <div>
       <section className="products">
         {productList.map((item) => (
-          <Product productItem={item} key={item.id} />
+          <Product productItem={item} id={item.id} />
         ))}
       </section>
     </div>

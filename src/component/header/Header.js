@@ -1,14 +1,8 @@
 import "./Header.css";
-const Header = ({
-  filterCategory,
-  optionCategory,
-  selectedCategory,
-  setFetch,
-}) => {
+const Header = ({ filterCategory, optionCategory, selectedCategory }) => {
   // console.log(filterCategory);
   return (
     <div>
-      <button onClick={setFetch}> fetch again</button>
       <nav className="product-filter">
         <h1>Go Code Shop</h1>
         <div className="sort">
