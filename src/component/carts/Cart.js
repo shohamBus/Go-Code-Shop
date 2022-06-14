@@ -1,13 +1,14 @@
 import ProductToCart from "../context/ProductToCart";
 import ShowCart from "../context/ShowCart";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./Carts.css";
 
 const Cart = () => {
   const { productCart, setProductCart } = useContext(ProductToCart);
   const { isCart, setIsCart } = useContext(ShowCart);
+  const [countProduct, setCountProduct] = useState(1);
 
-  //onclick the '-' sign remove from the cart the priduct
+  //onclick the 'remove From Cart' button remove from the cart the product
   const removeFromCart = (id) => {
     setProductCart(productCart.filter((item) => item.id !== id));
   };
@@ -29,6 +30,8 @@ const Cart = () => {
               <h3>{product.title}</h3>
               <h4>{product.price}$</h4>
               <button>+</button>
+              <span>{countProduct}</span>
+              <button>-</button>
               <button onClick={() => removeFromCart(product.id)}>
                 remove From Cart
               </button>
