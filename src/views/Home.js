@@ -5,11 +5,8 @@ import Products from "../component/products/Products";
 import Cart from "../component/carts/Cart";
 
 const Home = () => {
-  //state for loading- do loader until the data come
   const [isLoading, setIsLoading] = useState(true);
-  //state for the product- is not change
   const [originalArray, setOriginalArray] = useState([]);
-  //state for the product- is change
   const [productArray, setProductArray] = useState([]);
 
   //pull the product from the API
