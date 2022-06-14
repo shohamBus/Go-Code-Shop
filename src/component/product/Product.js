@@ -4,10 +4,14 @@ import Showcart from "../context/ShowCart";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 const Product = ({ productItem, id }) => {
+  //state for each product amount
   const [countProduct, setCountProduct] = useState(0);
+  //state of context for the list of the cart
   const { productCart, setProductCart } = useContext(ProductToCart);
+  //state builian of context display the cart or not
   const { setIsCart } = useContext(Showcart);
 
+  //onclick the '+' sign add the product to the cart
   const addToCart = () => {
     setProductCart(
       [
@@ -24,10 +28,12 @@ const Product = ({ productItem, id }) => {
     );
   };
 
+  //add one product to cart
   const increment = () => {
     setCountProduct((prev) => prev + 1);
   };
-  console.log(countProduct);
+
+  //subtract one product from cart ?
   const decrement = () => {
     setCountProduct((prev) => prev - 1);
   };

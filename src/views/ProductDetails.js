@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./ProductDetails.css";
 const ProductDetails = () => {
+  // //state for loading- do loader until the data come
   const [isLoading, setIsLoading] = useState(true);
+  // take the uniq id from the address
   const { id } = useParams();
+  //state for the deteils of the choosen product
   const [choosenProduct, setChoosenProduct] = useState({});
 
-  // setIsLoading(true);
+  //pull the specific product details from the API
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then((res) => res.json())
@@ -16,6 +19,7 @@ const ProductDetails = () => {
         setIsLoading(false);
       });
   });
+
   return (
     <>
       {isLoading ? (

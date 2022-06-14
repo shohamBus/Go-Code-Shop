@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
 import Utils from "../component/utils/Utils";
-import ProductToCart from "../component/context/ProductToCart";
-import Showcart from "../component/context/ShowCart";
 import Header from "../component/header/Header";
 import Products from "../component/products/Products";
 import Cart from "../component/carts/Cart";
 
 const Home = () => {
+  //state for loading- do loader until the data come
   const [isLoading, setIsLoading] = useState(true);
-  const [productArray, setProductArray] = useState([]);
+  //state for the product- is not change
   const [originalArray, setOriginalArray] = useState([]);
-  const [productCart, setProductCart] = useState([]);
-  const [isCart, setIsCart] = useState(false);
+  //state for the product- is change
+  const [productArray, setProductArray] = useState([]);
+
+  //pull the product from the API
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -56,12 +57,9 @@ const Home = () => {
             selectedCategory={selectedCategory}
             fetchAgain={fetch}
           />
-          <Showcart.Provider value={{ isCart, setIsCart }}>
-            <ProductToCart.Provider value={{ productCart, setProductCart }}>
-              <Cart />
-              <Products productList={productArray} />
-            </ProductToCart.Provider>
-          </Showcart.Provider>
+
+          <Cart />
+          <Products productList={productArray} />
         </div>
       )}
     </>

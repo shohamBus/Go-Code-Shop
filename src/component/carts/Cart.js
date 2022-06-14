@@ -7,9 +7,15 @@ const Cart = () => {
   const { productCart, setProductCart } = useContext(ProductToCart);
   const { isCart, setIsCart } = useContext(ShowCart);
 
+  //onclick the '-' sign remove from the cart the priduct
   const removeFromCart = (id) => {
     setProductCart(productCart.filter((item) => item.id !== id));
   };
+
+  //dont show the cart if it empty
+  setIsCart(productCart.length > 0 ? true : false);
+
+  //function to display the cart container with the choosen products
   const display = (productCart) => {
     return (
       <div className="container-cart">
