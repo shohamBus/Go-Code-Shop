@@ -1,7 +1,7 @@
 //how can i conect the count amount in the cart and in the products
 
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./views/Home";
 import UniqueNumber from "./component/context/UniqueNumber";
 import ProductDetails from "./views/ProductDetails";

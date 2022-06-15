@@ -1,6 +1,21 @@
+import { Slider } from "@mui/material";
+import { Box } from "@mui/system";
+import { useState } from "react";
 import "./Header.css";
-const Header = ({ filterCategory, optionCategory, selectedCategory }) => {
-  // console.log(filterCategory);
+const Header = ({
+  filterCategory,
+  optionCategory,
+  selectedCategory,
+  rangeOfPrice,
+  minAndMaxPrice,
+  min,
+  max,
+}) => {
+  const [value, setValue] = useState([0, 1000]);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    rangeOfPrice(value);
+  };
   return (
     <div>
       <nav className="product-filter">
@@ -24,16 +39,17 @@ const Header = ({ filterCategory, optionCategory, selectedCategory }) => {
           </div>
           <div className="collection-sort">
             <label>Sort by:</label>
-            <select>
-              <option value="/">Featured</option>
-              <option value="/">Best Selling</option>
-              <option value="/">Alphabetically, A-Z</option>
-              <option value="/">Alphabetically, Z-A</option>
-              <option value="/">Price, low to high</option>
-              <option value="/">Price, high to low</option>
-              <option value="/">Date, new to old</option>
-              <option value="/">Date, old to new</option>
-            </select>
+            <Box sx={{ width: 250 }}>
+              <Slider
+                getAriaLabel={() => "Price range"}
+                value={value}
+                onChange={handleChange}
+                min={min}
+                max={max}
+                valueLabelDisplay="auto"
+                // getAriaValueText={valuetext}
+              />
+            </Box>
           </div>
         </div>
       </nav>
