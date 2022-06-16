@@ -1,8 +1,6 @@
 import "./Product.css";
 import ProductToCart from "../context/ProductToCart";
-import Showcart from "../context/ShowCart";
-// import UniqueNumber from "../context/UniqueNumber";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -13,54 +11,15 @@ import {
   Typography,
 } from "@mui/material";
 const Product = ({ productItem, id }) => {
-  // const [countProduct, setCountProduct] = useState(0);
-  const { productCart, setProductCart } = useContext(ProductToCart);
-  const { setIsCart } = useContext(Showcart);
+  const { productCart, addToCart, decrement } = useContext(ProductToCart);
 
-  // productItem.countProduct = countProduct;
-
-  //onclick the '+' sign add the product to the cart
-  const addToCart = ({ product, id }) => {
-    // incrementCountNumber();
-    // product.countProduct = product.countProduct + 1;
-    console.log(id);
-    let found = productCart.find((item) => item.id === id);
-    if (!found) {
-      //if includes adding just amount
-      setProductCart([
-        ...productCart,
-        {
-          id: productItem.id,
-          title: productItem.title,
-          category: productItem.category,
-          price: productItem.price,
-          image: productItem.image,
-          // countProduct: product.countProduct,
-        },
-      ]);
-    }
-    setIsCart(true);
-  };
-  // console.log(productCart);
-  // console.log({productItem.countProduct});
-
-  //onclick the '-' sign remove from the cart the product
-  const removeFromCart = (id) => {
-    let found = productCart.find((item) => item.id === id);
-    setProductCart(productCart.filter((item) => item !== found));
+  //show quantity number
+  const showQantity = (productItem) => {
+    const found = productCart.find((item) => item.id === productItem.id);
+    if (found === undefined) return 0;
+    else return found.qty;
   };
 
-  // incrementcountNumber;
-  // const incrementCountNumber = () => {
-  //   setCountProduct((prev) => prev + 1);
-  // };
-
-  //subtract one product from cart ?
-  // const decrement = ({ product }) => {
-  //   product.countProduct > 0
-  //     ? (product.countProduct = product.countProduct - 1)
-  //     : setIsCart(false);
-  // };
   return (
     <Card className="product-card" sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -94,18 +53,17 @@ const Product = ({ productItem, id }) => {
         <Button
           size="medium"
           onClick={() => {
-            console.log({ productItem });
-            addToCart({ productItem, id });
-            console.log(productItem);
+            addToCart(productItem);
           }}
         >
           +
         </Button>
+        <span>{showQantity(productItem)}</span>
         <Button
           size="small"
           onClick={() => {
-            // decrement({ productItem });
-            removeFromCart(productItem.id);
+            decrement(productItem);
+            console.log(productItem.qty);
           }}
         >
           -

@@ -26,7 +26,7 @@ const Home = () => {
         setIsLoading(false);
       });
   }, []);
-
+  console.log(originalArray);
   let optionCategory = " ";
 
   //filter the products

@@ -7,7 +7,6 @@ const Header = ({
   optionCategory,
   selectedCategory,
   rangeOfPrice,
-  minAndMaxPrice,
   min,
   max,
 }) => {
