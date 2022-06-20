@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Utils from "../component/utils/Utils";
 import Header from "../component/header/Header";
 import Products from "../component/products/Products";
-import Cart from "../component/carts/Cart";
+// import Cart from "../component/carts/Cart";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +26,6 @@ const Home = () => {
         setIsLoading(false);
       });
   }, []);
-  console.log(originalArray);
   let optionCategory = " ";
 
   //filter the products
@@ -71,8 +70,6 @@ const Home = () => {
             max={max}
             rangeOfPrice={rangeOfPrice}
           />
-
-          <Cart />
           <Products productList={productArray} />
         </div>
       )}

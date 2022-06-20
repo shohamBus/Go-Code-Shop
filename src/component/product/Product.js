@@ -2,6 +2,8 @@ import "./Product.css";
 import ProductToCart from "../context/ProductToCart";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 import {
   Button,
   Card,
@@ -48,25 +50,28 @@ const Product = ({ productItem, id }) => {
       </CardContent>
       <CardActions>
         <Link to={`products/${id}`}>
-          <Button size="large">Details</Button>
+          <Button className="buttons" size="large">
+            Details
+          </Button>
         </Link>
         <Button
+          className="buttons"
           size="medium"
           onClick={() => {
             addToCart(productItem);
           }}
         >
-          +
+          <AddBoxIcon />
         </Button>
         <span>{showQantity(productItem)}</span>
         <Button
+          className="buttons"
           size="small"
           onClick={() => {
             decrement(productItem);
-            console.log(productItem.qty);
           }}
         >
-          -
+          <IndeterminateCheckBoxIcon />
         </Button>
       </CardActions>
     </Card>

@@ -3,7 +3,8 @@ import ShowCart from "../context/ShowCart";
 import React, { useContext } from "react";
 import "./Carts.css";
 import { Box } from "@mui/system";
-import { Button, Drawer, List, ListItemButton } from "@mui/material";
+import { Drawer, IconButton, List, Typography } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Cart = () => {
   const { productCart, addToCart, decrement, removeFromCartAllSame } =
@@ -20,35 +21,34 @@ const Cart = () => {
 
   //Drawer
 
-  const toggleDrawer = (open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    )
-      return;
-    setIsCart(open);
-  };
+  // const toggleDrawer = (open) => (event) => {
+  //   if (
+  //     event.type === "keydown" &&
+  //     (event.key === "Tab" || event.key === "Shift")
+  //   )
+  //     return;
+  //   setIsCart(open);
+  // };
 
+  console.log(isCart);
   const list = () => (
     <Box
       sx={{ width: 350 }}
       role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
+      onClick={() => setIsCart(true)}
     >
+      <h1>Cart</h1>
       <List>
-        <div className="container-cart">
-          <h1>Cart</h1>
-        </div>
+        {/* <div className="container-cart"> */}
         {productCart.map((product) => (
           <div className="ptoduct-cart">
             <div className="info-cart">
               <h3>{product.title}</h3>
               <h4>{product.price}$</h4>
-              <ListItemButton onClick={toggleDrawer(true)}>
+              <IconButton className="button-contain">
                 <button
+                  className="buttons"
                   onClick={() => {
-                    setIsCart(true);
                     addToCart(product);
                   }}
                 >
@@ -56,37 +56,57 @@ const Cart = () => {
                 </button>
                 <span>{product.qty}</span>
                 <button
+                  className="buttons"
                   onClick={() => {
                     decrement(product);
                   }}
                 >
                   -
                 </button>
-                <button onClick={() => removeFromCartAllSame(product.id)}>
-                  remove From Cart
-                </button>
-              </ListItemButton>
+              </IconButton>
+              <button
+                className="buttons"
+                onClick={() => removeFromCartAllSame(product.id)}
+              >
+                remove From Cart
+              </button>
             </div>
-            <div className="image-cart">
-              <img src={product.image} alt="img" />
-            </div>
+            {/* <div className="image-cart">
+                <img src={product.image} alt="img" />
+              </div> */}
           </div>
         ))}
+        {/* </div> */}
         <h5>total price:{totalPrice()}</h5>
       </List>
     </Box>
   );
   return (
-    <div>
-      <React.Fragment>
-        <Button onClick={toggleDrawer(true)}>
-          <h1>Cart</h1>
-        </Button>
-        <Drawer anchor="right" open={isCart} onClose={toggleDrawer(false)}>
-          {list()}
-        </Drawer>
-      </React.Fragment>
-    </div>
+    <>
+      <ShoppingCartIcon
+        fontSize="large"
+        edge="start"
+        color="inherit"
+        aria-label="add to shopping cart"
+        onClick={() => setIsCart(true)}
+      ></ShoppingCartIcon>
+      <Drawer anchor="right" open={isCart} onClose={() => setIsCart(false)}>
+        <Box p={2} width="400px" textAlign="center" role="presentation">
+          <Typography>
+            <IconButton
+              size="extra large"
+              edge="start"
+              color="inherit"
+              aria-label="add to shopping cart"
+              onClick={() => setIsCart(false)}
+            >
+              {/* <AddShoppingCartIcon /> */}
+            </IconButton>
+            {list()}
+          </Typography>
+        </Box>
+      </Drawer>
+    </>
   );
 };
 export default Cart;

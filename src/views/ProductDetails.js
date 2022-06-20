@@ -3,11 +3,8 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./ProductDetails.css";
 const ProductDetails = () => {
-  // //state for loading- do loader until the data come
   const [isLoading, setIsLoading] = useState(true);
-  // take the uniq id from the address
   const { id } = useParams();
-  //state for the deteils of the choosen product
   const [choosenProduct, setChoosenProduct] = useState({});
 
   //pull the specific product details from the API

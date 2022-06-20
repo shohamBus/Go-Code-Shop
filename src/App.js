@@ -15,7 +15,6 @@ const App = () => {
   //onclick the '+' sign add the product to the cart
 
   const addToCart = (product) => {
-    console.log(product);
     const found = productCart.find((item) => item.id === product.id);
     if (found === undefined) {
       setProductCart([...productCart, { ...product, qty: 1 }]);
