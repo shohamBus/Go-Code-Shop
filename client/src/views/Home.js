@@ -18,7 +18,7 @@ const Home = () => {
   //pull the product from the API
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
+    fetch("/api/products")
       .then((productArray) => productArray.json())
       .then((productArray) => {
         setProductArray(productArray);

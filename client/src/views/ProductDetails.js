@@ -9,7 +9,7 @@ const ProductDetails = () => {
 
   //pull the specific product details from the API
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
+    fetch(`/api/products/${id}`)
       .then((res) => res.json())
       .then((product) => {
         setChoosenProduct(product);
