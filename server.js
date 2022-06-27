@@ -82,10 +82,11 @@ app.get("*", (req, res) => {
 });
 const PORT = process.env.PORT || 8000;
 const { DB_USER, DB_PASS } = process.env;
-// `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.hnlsrn0.mongodb.net/GoCodeShop`
 
 mongoose
-  .connect("mongodb://localhost:27017/GoCodeShop")
+  .connect(
+    `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.hnlsrn0.mongodb.net/GoCodeShop`
+  )
   .then(() => app.listen(PORT));
 
 // app.get("/", (req, res) => res.send("welcome"));
