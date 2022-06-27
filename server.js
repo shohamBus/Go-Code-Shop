@@ -14,7 +14,6 @@ const db = mongoose.model("Product", {
   description: String,
   category: String,
   image: String,
-  rating: Object,
 });
 
 //get all products
@@ -50,7 +49,6 @@ app.post("/api/products", (req, res) => {
       description,
       category,
       image,
-      rating,
     },
   ]).then((data) => res.send(data));
 });
