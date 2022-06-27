@@ -10,6 +10,7 @@ const Home = () => {
   const [productArray, setProductArray] = useState([]);
 
   //min and max price
+  console.log(originalArray);
 
   const priceAraay = originalArray.map((item) => item.price);
   let min = Math.min(...priceAraay);

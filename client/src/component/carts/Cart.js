@@ -30,7 +30,6 @@ const Cart = () => {
   //   setIsCart(open);
   // };
 
-  console.log(isCart);
   const list = () => (
     <Box
       sx={{ width: 350 }}
@@ -39,7 +38,6 @@ const Cart = () => {
     >
       <h1>Cart</h1>
       <List>
-        {/* <div className="container-cart"> */}
         {productCart.map((product) => (
           <div className="ptoduct-cart">
             <div className="info-cart">
@@ -66,17 +64,13 @@ const Cart = () => {
               </IconButton>
               <button
                 className="buttons"
-                onClick={() => removeFromCartAllSame(product.id)}
+                onClick={() => removeFromCartAllSame(product._id)}
               >
                 remove From Cart
               </button>
             </div>
-            {/* <div className="image-cart">
-                <img src={product.image} alt="img" />
-              </div> */}
           </div>
         ))}
-        {/* </div> */}
         <h5>total price:{totalPrice()}</h5>
       </List>
     </Box>
@@ -99,9 +93,7 @@ const Cart = () => {
               color="inherit"
               aria-label="add to shopping cart"
               onClick={() => setIsCart(false)}
-            >
-              {/* <AddShoppingCartIcon /> */}
-            </IconButton>
+            ></IconButton>
             {list()}
           </Typography>
         </Box>

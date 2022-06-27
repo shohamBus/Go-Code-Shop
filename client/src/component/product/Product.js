@@ -17,13 +17,16 @@ const Product = ({ productItem, id }) => {
 
   //show quantity number
   const showQantity = (productItem) => {
-    const found = productCart.find((item) => item.id === productItem.id);
+    const found = productCart.find((item) => item._id === productItem._id);
     if (found === undefined) return 0;
     else return found.qty;
   };
 
   return (
-    <Card className="product-card" sx={{ maxWidth: 345 }}>
+    <Card
+      className="product-card"
+      sx={{ maxWidth: 345, justifyContent: "space-between" }}
+    >
       <CardMedia
         component="img"
         height="120"

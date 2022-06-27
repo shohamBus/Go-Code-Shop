@@ -1,4 +1,3 @@
-import * as fsp from "fs/promises";
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -18,6 +17,7 @@ const db = mongoose.model("Product", {
 
 //get all products
 app.get("/api/products", (req, res) => {
+  console.log(req.body);
   db.find()
     .then((data) => res.send(data))
     .catch((e) => res.send("error", e));
@@ -37,20 +37,10 @@ app.get("/api/products/:id", (req, res) => {
 
 //creat
 app.post("/api/products", (req, res) => {
-  const { title } = req.body;
-  const { price } = req.body;
-  const { description } = req.body;
-  const { category } = req.body;
-  const { image } = req.body;
-  db.insertMany([
-    {
-      title,
-      price,
-      description,
-      category,
-      image,
-    },
-  ]).then((data) => res.send(data));
+  const { title, price, description, category, image } = req.body;
+  db.insertMany([title, price, description, category, image]).then((data) =>
+    res.send(data)
+  );
 });
 
 //delete by id

@@ -13,15 +13,14 @@ const App = () => {
   const [isCart, setIsCart] = useState(false);
 
   //onclick the '+' sign add the product to the cart
-
   const addToCart = (product) => {
-    const found = productCart.find((item) => item.id === product.id);
+    const found = productCart.find((item) => item._id === product._id);
     if (found === undefined) {
       setProductCart([...productCart, { ...product, qty: 1 }]);
     } else {
       setProductCart(
         productCart.map((item) =>
-          item.id === product.id ? { ...product, qty: item.qty + 1 } : item
+          item._id === product._id ? { ...product, qty: item.qty + 1 } : item
         )
       );
     }
@@ -31,13 +30,13 @@ const App = () => {
   // //decrement the product in 1
 
   const decrement = (product) => {
-    const found = productCart.find((item) => item.id === product.id);
+    const found = productCart.find((item) => item._id === product._id);
     if (found.qty === 1) {
-      removeFromCartAllSame(found.id);
+      removeFromCartAllSame(found._id);
     } else {
       setProductCart(
         productCart.map((item) =>
-          item.id === product.id ? { ...product, qty: item.qty - 1 } : item
+          item._id === product._id ? { ...product, qty: item.qty - 1 } : item
         )
       );
     }
@@ -46,7 +45,7 @@ const App = () => {
   //onclick the 'remove From Cart' button remove from the cart the products
 
   const removeFromCartAllSame = (id) => {
-    setProductCart(productCart.filter((item) => item.id !== id));
+    setProductCart(productCart.filter((item) => item._id !== id));
     setIsCart(productCart.length > 0 ? true : false);
   };
 
